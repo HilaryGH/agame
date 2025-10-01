@@ -1,0 +1,88 @@
+/* Animated gradient background and entry animations */
+:root {
+  --gradient-1: #00A99D; /* teal */
+  --gradient-2: #1C2B4D; /* deep blue */
+  --gradient-3: #00A99D; /* repeat for smooth loop */
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeInUp 800ms ease forwards;
+}
+.fade-in-up.delay-1 { animation-delay: 150ms; }
+.fade-in-up.delay-2 { animation-delay: 300ms; }
+.fade-in-up.delay-3 { animation-delay: 450ms; }
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Simple fade-in (no translate) */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 700ms ease forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Navbar accents and link hover underline */
+.navbar-accent {
+  position: relative;
+}
+.navbar-accent::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+  background-size: 200% 100%;
+  animation: gradientBar 6s ease infinite;
+}
+
+@keyframes gradientBar {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+  transition: width 220ms ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
